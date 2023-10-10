@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Ships
 {
@@ -26,18 +25,14 @@ namespace Ships
 
             //first method
 
+
+
             count = CountShips(count);
-            //second method
-
-
-            var count2 = from int ship in ships
-                         where ship == 1
-                         select ship;
 
 
 
             Console.WriteLine("First method:" + count);
-            Console.WriteLine("Second method:" + count2.Count());
+
             Console.ReadLine();
 
         }
@@ -50,11 +45,76 @@ namespace Ships
                 {
                     if (ships[i, j] == 1)
                     {
-                        count++;
+                        ships[i, j] = 0;
+                        if (j + 1 != 10 && ships[i, j + 1] == 1)
+                        {
+                            ships[i, j + 1] = 0;
+                            if (j + 2 != 10 && ships[i, j + 2] == 1)
+                            {
+                                ships[i, j + 2] = 0;
+                                if (j + 3 != 10 && ships[i, j + 3] == 1)
+                                {
+                                    ships[i, j + 3] = 0;
+                                    count++;
+                                }
+                                else
+                                {
+                                    count++;
+                                }
+                            }
+                            else
+                            {
+                                count++;
+                            }
+
+                        }
+
+                        else
+                        {
+                            if (i + 1 != 10 && ships[i + 1, j] == 1)
+                            {
+                                ships[i + 1, j] = 0;
+                                if (i + 2 != 10 && ships[i + 2, j] == 1)
+                                {
+                                    ships[i + 2, j] = 0;
+                                    if (i + 3 != 10 && ships[i + 3, j] == 1)
+                                    {
+                                        ships[i + 3, j] = 0;
+                                        count++;
+                                    }
+                                    else
+                                    {
+                                        count++;
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    count++;
+                                }
+                            }
+                            else
+                            {
+                                count++;
+                            }
+                        }
                     }
                 }
             }
             return count;
+        }
+
+        static bool CheckIfIndexOutOfRange(int index)
+        {
+            if (index == 10)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
