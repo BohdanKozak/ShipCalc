@@ -49,12 +49,14 @@ namespace Ships
                         if (j + 1 != 10 && ships[i, j + 1] == 1)
                         {
                             ships[i, j + 1] = 0;
+
                             if (j + 2 != 10 && ships[i, j + 2] == 1)
                             {
                                 ships[i, j + 2] = 0;
                                 if (j + 3 != 10 && ships[i, j + 3] == 1)
                                 {
                                     ships[i, j + 3] = 0;
+
                                     count++;
                                 }
                                 else
@@ -64,7 +66,19 @@ namespace Ships
                             }
                             else
                             {
-                                count++;
+                                if (i + 1 != 10 && ships[i + 1, j] == 1)
+                                {
+                                    ships[i + 1, j] = 0;
+                                    if (i + 1 != 10 && ships[i + 1, j + 1] == 1)
+                                    {
+                                        ships[i + 1, j + 1] = 0;
+                                        count++;
+                                    }
+                                }
+                                else
+                                {
+                                    count++;
+                                }
                             }
 
                         }
